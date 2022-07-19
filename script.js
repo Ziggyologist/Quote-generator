@@ -12,19 +12,18 @@ const mainArea = document.querySelector("main");
 const loading = function () {
   loaderAnimation.hidden = false;
   mainArea.hidden = true;
-  quoteBtn.hidden = true;
-  twitterBtn.hidden = true;
+  quoteBtn.style.opacity = 0;
+  twitterBtn.style.opacity = 0;
 };
 
 const completeLoading = function () {
   loaderAnimation.hidden = true;
   mainArea.hidden = false;
-  quoteBtn.hidden = false;
-  twitterBtn.hidden = false;
+  quoteBtn.style.opacity = 1;
+  twitterBtn.style.opacity = 1;
 };
 
 const newQuote = function () {
-  loading();
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
   const author = quote.author
     ? `<p class="quote_author">${quote.author}</p>`
@@ -57,6 +56,7 @@ async function getQuotes() {
   loading();
   const apiUrl = "https://type.fit/api/quotes";
   try {
+    loading();
     const response = await fetch(apiUrl);
     apiQuotes = await response.json();
     newQuote();
