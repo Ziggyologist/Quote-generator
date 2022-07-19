@@ -78,15 +78,6 @@ main {
   font-weight: 500;
 }
 
-@media screen and (max-width: 1000px) {
-  .quote_area {
-    width: 90vw;
-  }
-  .btns {
-    width: 90vw;
-  }
-}
-
 /* Loader */
 .loader {
   border: 16px solid #747474;
@@ -104,5 +95,19 @@ main {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  * {
+    font-size: 14px;
+  }
+  .quote_area {
+    width: 90vw;
+    height: 60vh;
+  }
+  .btns {
+    width: 90vw;
+    font-size: 1.5rem;
   }
 }

@@ -19,8 +19,8 @@ const loading = function () {
 const completeLoading = function () {
   loaderAnimation.hidden = true;
   mainArea.hidden = false;
-  quoteBtn.style.opacity = 1;
-  twitterBtn.style.opacity = 1;
+  quoteBtn.style.opacity = 0.85;
+  twitterBtn.style.opacity = 0.85;
 };
 
 const newQuote = function () {
