@@ -2,7 +2,29 @@
 
 let apiQuotes = [];
 const quoteArea = document.querySelector(".quote_area");
+const quoteBtn = document.querySelector(".next_qt");
+const twitterBtn = document.querySelector(".share_twitter");
+
+// Loader
+const loaderAnimation = document.getElementById("loader");
+const mainArea = document.querySelector("main");
+
+const loading = function () {
+  loaderAnimation.hidden = false;
+  mainArea.hidden = true;
+  quoteBtn.hidden = true;
+  twitterBtn.hidden = true;
+};
+
+const completeLoading = function () {
+  loaderAnimation.hidden = true;
+  mainArea.hidden = false;
+  quoteBtn.hidden = false;
+  twitterBtn.hidden = false;
+};
+
 const newQuote = function () {
+  loading();
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
   const author = quote.author
     ? `<p class="quote_author">${quote.author}</p>`
@@ -15,24 +37,24 @@ const newQuote = function () {
   quoteArea.innerHTML = html;
 
   // On click
-  const quoteBtn = document.querySelector(".next_qt");
   const quoteText = document.querySelector(".quote_text")?.textContent;
   const quoteAuthor = document.querySelector(".quote_author")?.textContent;
 
   quoteBtn.addEventListener("click", getQuotes);
 
   //Twitter integration
-  const twitterBtn = document.querySelector(".share_twitter");
 
   const tweetQuote = function () {
     console.log(quoteText);
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText} - ${quoteAuthor}`;
     window.open(twitterUrl, "_blank");
   };
+  completeLoading();
   twitterBtn.addEventListener("click", tweetQuote);
 };
 // Get quotes from API
 async function getQuotes() {
+  loading();
   const apiUrl = "https://type.fit/api/quotes";
   try {
     const response = await fetch(apiUrl);
